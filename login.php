@@ -32,29 +32,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Simple Blog</title>
-  
-  
+    <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add your custom CSS if needed -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        .form-container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="">
-        <div class="">
-            <h2 class="">Login</h2>
+    <div class="container login-container">
+        <div class="form-container">
+            <h2 class="text-center mb-4">Login</h2>
 
             <?php if (isset($error_message)) : ?>
-                <div class=""><?= $error_message ?></div>
+                <div class="alert alert-danger"><?= $error_message ?></div>
             <?php endif; ?>
 
             <form method="post">
                 <div class="mb-3">
-                    <label for="username" class="">Username:</label>
-                    <input type="text" name="username" class="" required>
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" name="username" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="">Password:</label>
-                    <input type="password" name="password" class="" required>
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" name="password" class="form-control" required>
                 </div>
-                <button type="submit" class="">Login</button>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
 
             <a href="register.php" class="register-link mt-3">Don't have an account? Register here.</a>

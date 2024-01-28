@@ -31,8 +31,54 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Blog</title>
     <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Add your custom CSS if needed -->
-    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+
+        .post {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-top: 5px;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .comment-form {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .comment-container {
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 10px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -60,8 +106,8 @@ $result = $conn->query($sql);
     // Check if the user is logged in
     if (isset($_SESSION['user_id'])) {
         ?>
-        <a class="" href="create_post.php">Create Post</a>
-        <a class="" href="logout.php">Logout</a>
+        <a class="btn" href="create_post.php">Create Post</a>
+        <a class="btn" href="logout.php">Logout</a>
         <?php
     }
     ?>
@@ -87,12 +133,12 @@ $result = $conn->query($sql);
                 // Check if the user is logged in to show the comment form
                 if (isset($_SESSION['user_id'])) {
                     ?>
-                    <form method="post" class="">
-                        <div class="">
-                            <textarea name="comment_content" class="" rows="3" placeholder="Add a comment" required></textarea>
+                    <form method="post" class="comment-form">
+                        <div class="mb-2">
+                            <textarea name="comment_content" class="form-control" rows="3" placeholder="Add a comment" required></textarea>
                             <input type="hidden" name="post_id" value="<?= $row['id'] ?>">
                         </div>
-                        <button type="submit" class="">Add Comment</button>
+                        <button type="submit" class="btn btn-primary">Add Comment</button>
                     </form>
                     <?php
                 }
@@ -110,7 +156,7 @@ $result = $conn->query($sql);
 
                 if ($comment_result->num_rows > 0) {
                     ?>
-                    <div class="">
+                    <div class="comment-container">
                         <h5>Comments:</h5>
                         <?php
                         while ($comment = $comment_result->fetch_assoc()) {
